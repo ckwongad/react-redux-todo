@@ -38,6 +38,10 @@ export const completeSelected = () => ({
   type: types.COMPLETE_SELECTED,
 });
 
+export const removeSelected = () => ({
+  type: types.REMOVE_SELECTED,
+});
+
 export const removeCompleted = id => ({
   type: types.REMOVE_COMPLETED,
 });

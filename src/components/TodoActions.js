@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { completeSelected } from '../actions/todos';
+import { completeSelected, removeSelected } from '../actions/todos';
 
 class TodoActions extends Component {
   render() {
@@ -12,7 +12,6 @@ class TodoActions extends Component {
       todos,
       currentFilter,
       handleFilter,
-      handleRemoveCompleted,
       actions,
     } = this.props;
 
@@ -40,7 +39,7 @@ class TodoActions extends Component {
             style={styles.radioButton}
           />
         </RadioButtonGroup>
-        <IconButton onTouchTap={handleRemoveCompleted}>
+        <IconButton onTouchTap={() => actions.removeSelected()}>
           <FontIcon
             className="material-icons"
             color="red"
@@ -82,7 +81,7 @@ const mapStateToProps = ({ todos }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ completeSelected }, dispatch)
+  actions: bindActionCreators({ completeSelected, removeSelected }, dispatch)
 });
 
 export default connect(

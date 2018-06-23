@@ -51,10 +51,6 @@ class TodoList extends Component {
     });
   };
 
-  handleRemoveCompleted = () => {
-    this.props.actions.removeCompleted();
-  };
-
   handleSortEnd = ({oldIndex, newIndex}) => {
     this.props.actions.reorderTodo(oldIndex, newIndex);
   };
@@ -95,7 +91,6 @@ class TodoList extends Component {
           todos={todos}
           handleFilter={this.handleFilter}
           currentFilter={currentFilter}
-          handleRemoveCompleted={this.handleRemoveCompleted}
         />
       </div>
     );

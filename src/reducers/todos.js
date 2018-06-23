@@ -68,6 +68,8 @@ export default (state = initialState, action = {}) => {
           } :
           todo
       );
+    case types.REMOVE_SELECTED:
+      return state.filter(todo => todo.selected === false);
     case types.REMOVE_COMPLETED:
       return state.filter(todo => todo.completed === false);
     default:

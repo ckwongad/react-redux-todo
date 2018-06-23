@@ -6,7 +6,7 @@ import FlatButton  from 'material-ui/FlatButton';
 
 const defaultState = {text: '', date: null}
 
-class Header extends Component {
+class TodoEditor extends Component {
   state = this.props.todo || defaultState;
 
   onChange = e => {
@@ -39,6 +39,7 @@ class Header extends Component {
           value={date ? new Date(date) : null}
           style={styles.datePicker}
           onChange={this.onDateChange}
+          hintText="When?"
         />
         <FlatButton
           primary
@@ -63,4 +64,4 @@ const styles = {
   }
 };
 
-export default Header;
+export default TodoEditor;

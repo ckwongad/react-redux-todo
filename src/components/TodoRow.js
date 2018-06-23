@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
 import isDate from 'lodash/isDate';
 
-import TodoTextField from '../components/TodoTextField';
+import TodoEditor from '../components/TodoEditor';
 
 class TodoRow extends Component {
   state = {
@@ -71,7 +71,7 @@ class TodoRow extends Component {
               open={this.state.showEditDialog}
               onRequestClose={this.handleRequestClose}
             >
-              <TodoTextField todo={todo} onSubmit={this.onSubmitClick} />
+              <TodoEditor todo={todo} onSubmit={this.onSubmitClick} />
             </Dialog>
           </div>
         }

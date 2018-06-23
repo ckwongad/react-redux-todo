@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import TodoTextField from './TodoTextField';
+import TodoEditor from './TodoEditor';
 
 class Header extends Component {
   render() {
@@ -8,7 +8,7 @@ class Header extends Component {
 
     return (
       <div>
-        <TodoTextField onSubmit={todo => addTodo(todo)} />
+        <TodoEditor onSubmit={todo => addTodo(todo)} />
       </div>
     );
   }

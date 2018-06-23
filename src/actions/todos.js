@@ -1,8 +1,9 @@
 import types from './actionTypes';
 
-export const addTodo = text => ({
+export const addTodo = ({ text, date }) => ({
   type: types.ADD_TODO,
   text,
+  date
 });
 
 export const editTodo = (id, text) => ({

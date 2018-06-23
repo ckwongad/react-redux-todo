@@ -4,6 +4,7 @@ const initialState = [
   {
     id: 0,
     text: 'This is a todo',
+    date: new Date().toISOString(),
     completed: false,
   },
 ];
@@ -17,6 +18,7 @@ export default (state = initialState, action = {}) => {
           id: state.length,
           completed: false,
           text: action.text,
+          date: action.date || new Date().toISOString()
         },
       ];
     case types.REMOVE_TODO:

@@ -8,7 +8,7 @@ class Header extends Component {
 
     return (
       <div>
-        <TodoTextField onSubmit={text => addTodo(text)} />
+        <TodoTextField onSubmit={todo => addTodo(todo)} />
       </div>
     );
   }

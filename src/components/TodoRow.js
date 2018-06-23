@@ -3,6 +3,7 @@ import { ListItem } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+import isDate from 'lodash/isDate';
 
 class TodoRow extends Component {
   render() {
@@ -10,7 +11,7 @@ class TodoRow extends Component {
 
     return (
       <ListItem
-        primaryText={todo.text}
+        primaryText={`${todo.date? new Date(todo.date).toDateString() : ''}: ${todo.text}`}
         leftCheckbox={
           <Checkbox
             onCheck={handleCompleteTodo(todo.id)}

@@ -3,12 +3,11 @@
   "description": "Todo application with React & Redux",
   "version": "1.0.0",
   "author": {
-    "name": "Lucas Bento da Silva",
-    "email": "lucas.bsilva@outlook.com",
-    "url": "https://github.com/lucasbento"
+    "name": "ckwongad",
+    "url": "https://github.com/ckwongad"
   },
   "bugs": {
-    "url": "https://github.com/lucasbento/react-redux-todo/issues"
+    "url": "https://github.com/ckwongad/react-redux-todo/issues"
   },
   "dependencies": {
     "formsy-material-ui": "0.5.0",
@@ -39,12 +38,12 @@
     "webpack": "1.13.2",
     "webpack-dev-server": "1.16.1"
   },
-  "homepage": "https://github.com/lucasbento/react-redux-todo",
+  "homepage": "https://github.com/ckwongad/react-redux-todo",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucasbento/react-redux-todo.git"
+    "url": "https://github.com/ckwongad/react-redux-todo.git"
   },
   "scripts": {
     "build": "webpack --production --config webpack.prod.config.js --progress --profile --colors",

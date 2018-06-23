@@ -1,4 +1,6 @@
 import types from '../actions/actionTypes';
+import { arrayMove } from 'react-sortable-hoc';
+import uniqueId from 'lodash/uniqueId';
 
 const initialState = [
   {
@@ -14,7 +16,7 @@ export default (state = initialState, action = {}) => {
       return [
         ...state,
         {
-          id: state.length,
+          id: uniqueId(`${Date.now()}_`),
           completed: false,
           text: action.text,
         },
@@ -23,6 +25,8 @@ export default (state = initialState, action = {}) => {
       return state.filter(todo =>
         todo.id !== action.id
       );
+    case types.REORDER_TODO:
+      return arrayMove(state, action.oldIndex, action.newIndex)
     case types.COMPLETE_TODO:
       return state.map(todo =>
         todo.id === action.id ?

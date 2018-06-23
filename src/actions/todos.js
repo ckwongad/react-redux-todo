@@ -16,6 +16,12 @@ export const removeTodo = (id, text) => ({
   id,
 });
 
+export const reorderTodo = (oldIndex, newIndex) => ({
+  type: types.REORDER_TODO,
+  oldIndex,
+  newIndex
+});
+
 export const completeTodo = id => ({
   type: types.COMPLETE_TODO,
   id,

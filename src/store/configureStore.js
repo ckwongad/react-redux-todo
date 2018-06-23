@@ -4,7 +4,11 @@ import reducers from '../reducers';
 
 
 function configureStore() {
-  const enhancer = compose(autoRehydrate(), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  var enhancer;
+  if (window.__REDUX_DEVTOOLS_EXTENSION__)
+    enhancer = compose(autoRehydrate(), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  else
+    enhancer = compose(autoRehydrate());
 
   const store = createStore(reducers, enhancer);
 

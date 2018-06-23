@@ -24,6 +24,16 @@ export default (state = initialState, action = {}) => {
           date: action.date || new Date().toISOString()
         },
       ];
+    case types.EDIT_TODO:
+      return state.map(todo =>
+        todo.id === action.id ?
+          {
+            ...todo,
+            text: action.text,
+            date: action.date
+          } :
+          todo
+      );
     case types.REMOVE_TODO:
       return state.filter(todo =>
         todo.id !== action.id

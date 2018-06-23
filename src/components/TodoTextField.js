@@ -7,7 +7,7 @@ import FlatButton  from 'material-ui/FlatButton';
 const defaultState = {text: '', date: null}
 
 class Header extends Component {
-  state = defaultState;
+  state = this.props.todo || defaultState;
 
   onChange = e => {
     const { value: text } = e.target;
@@ -18,12 +18,14 @@ class Header extends Component {
     this.setState({...this.state, date} );
   };
 
-  onAddClick = () => {
+  onSubmitClick = () => {
     this.props.onSubmit({...this.state, date: this.state.date || new Date().toISOString()});
     this.setState(defaultState);
   }
 
   render() {
+    const { date } = this.state
+
     return (
       <div>
         <TextField
@@ -34,14 +36,14 @@ class Header extends Component {
           style={styles.textField}
         />
         <DatePicker
-          value={this.state.date}
+          value={date ? new Date(date) : null}
           style={styles.datePicker}
           onChange={this.onDateChange}
         />
         <FlatButton
           primary
-          label="Add"
-          onClick={this.onAddClick}
+          label="Submit"
+          onClick={this.onSubmitClick}
         />
       </div>
     );

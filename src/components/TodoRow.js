@@ -1,11 +1,34 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as todoActions from '../actions/todos';
 import { ListItem } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+import Dialog from 'material-ui/Dialog';
 import isDate from 'lodash/isDate';
 
+import TodoTextField from '../components/TodoTextField';
+
 class TodoRow extends Component {
+  state = {
+    showEditDialog: false
+  }
+
+  showDialog = () => {
+    this.setState({...this.state, showEditDialog: true})
+  }
+
+  handleRequestClose = () => {
+    this.setState({...this.state, showEditDialog: false})
+  }
+
+  onSubmitClick = todo => {
+    this.props.actions.editTodo(todo)
+    this.setState({...this.state, showEditDialog: false})
+  }
+
   render() {
     const { todo, handleRemoveTodo, handleSelectTodo, handleCompleteTodo } = this.props;
 
@@ -20,6 +43,14 @@ class TodoRow extends Component {
         }
         rightIconButton={
           <div>
+            <IconButton onTouchTap={this.showDialog}>
+              <FontIcon
+                className="material-icons"
+                color="gray"
+              >
+                edit
+              </FontIcon>
+            </IconButton>
             <IconButton onTouchTap={handleCompleteTodo(todo.id)}>
               <FontIcon
                 className="material-icons"
@@ -36,6 +67,12 @@ class TodoRow extends Component {
                 clear
               </FontIcon>
             </IconButton>
+            <Dialog
+              open={this.state.showEditDialog}
+              onRequestClose={this.handleRequestClose}
+            >
+              <TodoTextField todo={todo} onSubmit={this.onSubmitClick} />
+            </Dialog>
           </div>
         }
         style={todo.completed ? styles.completed : {}}
@@ -51,4 +88,11 @@ const styles = {
   },
 };
 
-export default TodoRow;
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(todoActions, dispatch)
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(TodoRow);

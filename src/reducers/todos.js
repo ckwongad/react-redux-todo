@@ -7,6 +7,7 @@ const initialState = [
     id: 0,
     text: 'This is a todo',
     completed: false,
+    selected: false
   },
 ];
 
@@ -26,7 +27,16 @@ export default (state = initialState, action = {}) => {
         todo.id !== action.id
       );
     case types.REORDER_TODO:
-      return arrayMove(state, action.oldIndex, action.newIndex)
+      return arrayMove(state, action.oldIndex, action.newIndex);
+    case types.TOGGLE_SELECT_TODO:
+      return state.map(todo =>
+        todo.id === action.id ?
+          {
+            ...todo,
+            selected: !todo.selected,
+          } :
+          todo
+      );
     case types.COMPLETE_TODO:
       return state.map(todo =>
         todo.id === action.id ?
@@ -36,12 +46,16 @@ export default (state = initialState, action = {}) => {
           } :
           todo
       );
-    case types.COMPLETE_ALL:
+    case types.COMPLETE_SELECTED:
       const alreadyCompleted = state.every(({ completed }) => completed);
-      return state.map(todo => ({
-        ...todo,
-        completed: !alreadyCompleted
-      }));
+      return state.map(todo =>
+        todo.selected?
+          {
+            ...todo,
+            completed: !alreadyCompleted
+          } :
+          todo
+      );
     case types.REMOVE_COMPLETED:
       return state.filter(todo => todo.completed === false);
     default:

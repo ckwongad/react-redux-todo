@@ -6,26 +6,36 @@ import IconButton from 'material-ui/IconButton';
 
 class TodoRow extends Component {
   render() {
-    const { todo, handleRemoveTodo, handleCompleteTodo } = this.props;
+    const { todo, handleRemoveTodo, handleSelectTodo, handleCompleteTodo } = this.props;
 
     return (
       <ListItem
         primaryText={todo.text}
         leftCheckbox={
           <Checkbox
-            onCheck={handleCompleteTodo(todo.id)}
-            checked={todo.completed}
+            onCheck={handleSelectTodo(todo.id)}
+            checked={todo.selected}
           />
         }
         rightIconButton={
-          <IconButton onTouchTap={handleRemoveTodo(todo.id)}>
-            <FontIcon
-              className="material-icons"
-              color="red"
-            >
-              clear
-            </FontIcon>
-          </IconButton>
+          <div>
+            <IconButton onTouchTap={handleCompleteTodo(todo.id)}>
+              <FontIcon
+                className="material-icons"
+                color="blue"
+              >
+                done
+              </FontIcon>
+            </IconButton>
+            <IconButton onTouchTap={handleRemoveTodo(todo.id)}>
+              <FontIcon
+                className="material-icons"
+                color="red"
+              >
+                clear
+              </FontIcon>
+            </IconButton>
+          </div>
         }
         style={todo.completed ? styles.completed : {}}
       />

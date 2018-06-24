@@ -22,13 +22,18 @@ export const reorderTodo = (oldIndex, newIndex) => ({
   newIndex
 });
 
+export const toggleSelectTodo = id => ({
+  type: types.TOGGLE_SELECT_TODO,
+  id,
+});
+
 export const completeTodo = id => ({
   type: types.COMPLETE_TODO,
   id,
 });
 
-export const completeAll = id => ({
-  type: types.COMPLETE_ALL,
+export const completeSelected = () => ({
+  type: types.COMPLETE_SELECTED,
 });
 
 export const removeCompleted = id => ({

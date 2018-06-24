@@ -6,15 +6,16 @@ import TodoRow from './TodoRow';
 import Footer from '../components/Footer';
 
 
-const SortableTodoRow = SortableElement(({todo, handleCompleteTodo, handleRemoveTodo}) =>
+const SortableTodoRow = SortableElement(({todo, handleCompleteTodo, handleRemoveTodo, handleSelectTodo}) =>
   <TodoRow
     todo={todo}
     handleCompleteTodo={handleCompleteTodo}
     handleRemoveTodo={handleRemoveTodo}
+    handleSelectTodo={handleSelectTodo}
   />
 );
 
-const SortableTodoList = SortableContainer(({todos, handleCompleteTodo, handleRemoveTodo}) => {
+const SortableTodoList = SortableContainer(({todos, handleCompleteTodo, handleRemoveTodo, handleSelectTodo}) => {
   return (
     <ul>
       {todos.map((todo, index) => (
@@ -24,6 +25,7 @@ const SortableTodoList = SortableContainer(({todos, handleCompleteTodo, handleRe
           todo={todo}
           handleCompleteTodo={handleCompleteTodo}
           handleRemoveTodo={handleRemoveTodo}
+          handleSelectTodo={handleSelectTodo}
         />
       ))}
     </ul>
@@ -53,12 +55,12 @@ class TodoList extends Component {
     this.props.actions.removeCompleted();
   };
 
-  handleCompleteAll = () => {
-    this.props.actions.completeAll();
-  };
-
   handleSortEnd = ({oldIndex, newIndex}) => {
     this.props.actions.reorderTodo(oldIndex, newIndex);
+  };
+
+  handleSelectTodo = (id) => {
+    return () => this.props.actions.toggleSelectTodo(id);
   };
 
   render() {
@@ -84,6 +86,7 @@ class TodoList extends Component {
             handleCompleteTodo={this.handleCompleteTodo}
             handleRemoveTodo={this.handleRemoveTodo}
             onSortEnd={this.handleSortEnd}
+            handleSelectTodo={this.handleSelectTodo}
             lockAxis='y'
             distance={10}
           />
@@ -93,7 +96,6 @@ class TodoList extends Component {
           handleFilter={this.handleFilter}
           currentFilter={currentFilter}
           handleRemoveCompleted={this.handleRemoveCompleted}
-          handleCompleteAll={this.handleCompleteAll}
         />
       </div>
     );

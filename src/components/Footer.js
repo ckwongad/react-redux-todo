@@ -3,7 +3,7 @@ import Divider from 'material-ui/Divider';
 
 import TodoActions from './TodoActions';
 
-const Footer = ({ todos, currentFilter, handleFilter, handleRemoveCompleted, handleCompleteAll }) => {
+const Footer = ({ todos, currentFilter, handleFilter, handleRemoveCompleted }) => {
   const leftTodos = todos.reduce((count, { completed }) => completed ? count : count + 1, 0);
 
   return (
@@ -17,7 +17,6 @@ const Footer = ({ todos, currentFilter, handleFilter, handleRemoveCompleted, han
           currentFilter={currentFilter}
           handleFilter={handleFilter}
           handleRemoveCompleted={handleRemoveCompleted}
-          handleCompleteAll={handleCompleteAll}
         />
       </div>
     </div>
